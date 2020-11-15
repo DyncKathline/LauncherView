@@ -25,14 +25,9 @@ public abstract class BaseGridPagerAdapter<V> extends BasePagerAdapter<RecyclerV
 
     public void setData(List<V> data) {
         if(data != null) {
+            updateAllPageData(data);
             reCreateAllPages(data);
         }
-    }
-
-    @Override
-    public void reCreateAllPages(List<V> list){
-        updateAllPageData(list);
-        super.reCreateAllPages(list);
     }
 
     protected void updateAllPageData(List<V> list) {
