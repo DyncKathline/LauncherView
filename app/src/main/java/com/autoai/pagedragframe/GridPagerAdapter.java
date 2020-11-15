@@ -48,16 +48,16 @@ public class GridPagerAdapter extends BaseDragPageAdapter<TestBean> {
 
         @Override
         public PageViewHolder onCreateViewHolder(ViewGroup parent, int viewType, int pageIndex) {
-            View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.page_item, parent, false);
+            View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler, parent, false);
 
             return new PageViewHolder(inflate, pageIndex);
         }
 
         @Override
         public void onBindViewHolder(PageViewHolder holder, int position, int pageIndex) {
-            holder.itemView.findViewById(R.id.recycler_item).setBackgroundColor(
+            holder.itemView.findViewById(R.id.iv_img).setBackgroundColor(
                     Integer.valueOf(getData().get(position).color));
-            ((TextView)holder.itemView.findViewById(R.id.tv_test)).setText("" + getData().get(position).dataIndex);
+            ((TextView)holder.itemView.findViewById(R.id.tv_name)).setText("" + getData().get(position).dataIndex);
         }
     }
 

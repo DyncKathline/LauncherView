@@ -27,10 +27,22 @@ public abstract class RecyclerViewPagerAdapter<Data> extends ViewPagerAdapter im
 
     public RecyclerViewPagerAdapter(Context context, PageData<Data> pageData, boolean initViewsImmediately) {
         mContext = context;
-        mPageData = pageData;
-        mPageData.setDataObserver(this);
+        if(pageData != null) {
+            mPageData = pageData;
+            mPageData.setDataObserver(this);
 
-        if(initViewsImmediately) initViewFromPageData(context);
+            if(initViewsImmediately) initViewFromPageData(context);
+        }
+    }
+
+    public void setPageData(PageData<Data> pageData) {
+        if(pageData != null) {
+            mPageData = pageData;
+            mPageData.setDataObserver(this);
+
+            initViewFromPageData(mContext);
+            notifyDataSetChanged();
+        }
     }
 
     protected void initViewFromPageData(Context context) {

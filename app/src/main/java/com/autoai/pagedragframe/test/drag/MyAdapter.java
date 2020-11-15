@@ -6,28 +6,30 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.autoai.pagedrag.adapter.DragPageAdapter;
 import com.autoai.pagedrag.bean.PageData;
+import com.autoai.pagedragframe.App;
 import com.autoai.pagedragframe.R;
 import com.autoai.pagedragframe.TestBean;
 
 import java.util.List;
 
-public class MyAdapter extends DragPageAdapter<TestBean> {
-    public MyAdapter(Context context, PageData<TestBean> pageData) {
+public class MyAdapter extends DragPageAdapter<App> {
+    public MyAdapter(Context context, PageData<App> pageData) {
         super(context, pageData, true);
     }
 
     @Override
-    public ItemAdapter generateItemRecyclerAdapter(List<TestBean> pageData, int pageIndex) {
+    public ItemAdapter generateItemRecyclerAdapter(List<App> pageData, int pageIndex) {
         return new ItemAdapter(pageData, pageIndex);
     }
 
     private class ItemAdapter extends ItemDragAdapter<ItemViewHolder> {
 
-        ItemAdapter(List<TestBean> list, int pageIndex) {
+        ItemAdapter(List<App> list, int pageIndex) {
             super(list, pageIndex);
         }
 
@@ -39,20 +41,16 @@ public class MyAdapter extends DragPageAdapter<TestBean> {
 
         @Override
         public void onBindItemViewHolder(ItemViewHolder holder, int position) {
-            TestBean testBean = data.get(position);
-            holder.backView.setBackgroundColor(testBean.color);
-            holder.textView.setText("" + testBean.dataIndex);
+            App info = data.get(position);
+            holder.iv_item_app_icon.setImageDrawable(info._icon);
+            holder.tv_item_app_name.setText(info._label);
         }
 
         @Override
         public void onBindItemViewHolder(ItemViewHolder holder, int position, List<Object> payloads) {
             if (payloads != null && !payloads.isEmpty()) {
-                Integer color = (Integer) payloads.get(0);
-                holder.backView.setBackgroundColor(color);
 
-//                Integer dataIndex = (Integer) payloads.get(0);
-//                holder.textView.setText("" + dataIndex);
-            }else {
+            } else {
                 onBindViewHolder(holder, position);
             }
         }
@@ -78,13 +76,13 @@ public class MyAdapter extends DragPageAdapter<TestBean> {
 
     private static class ItemViewHolder extends DragViewHolder {
 
-        private final View backView;
-        private final TextView textView;
+        private final ImageView iv_item_app_icon;
+        private final TextView tv_item_app_name;
 
         ItemViewHolder(View itemView) {
             super(itemView);
-            backView = itemView.findViewById(R.id.recycler_item);
-            textView = itemView.findViewById(R.id.tv_test);
+            iv_item_app_icon = itemView.findViewById(R.id.iv_app_icon);
+            tv_item_app_name = itemView.findViewById(R.id.tv_app_name);
         }
     }
 }
