@@ -20,6 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/iv_app_icon"
         android:padding="5dp"
+        android:singleLine="true"
         android:layout_centerHorizontal="true"
         android:text="未知" />
 

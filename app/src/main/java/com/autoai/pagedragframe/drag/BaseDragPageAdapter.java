@@ -16,11 +16,11 @@ public abstract class BaseDragPageAdapter<V> extends BaseGridPagerAdapter<V> imp
     private View.OnLongClickListener onLongClickListener;
     private DragManager<RecyclerView> mDragManager;
 
-    public BaseDragPageAdapter(Context context, int row, int column, List<V> list, DragListenerDispatcher<ViewPager, DragInfo> pagerLisener) {
+    public BaseDragPageAdapter(Context context, int row, int column, List<V> list, DragListenerDispatcher<ViewPager, DragInfo> pagerListener) {
         super(context, row, column, list);
 
         mDragManager = new MyDragManager();
-        pagerLisener.attachDragManager(mDragManager);
+        pagerListener.attachDragManager(mDragManager);
 
     }
 

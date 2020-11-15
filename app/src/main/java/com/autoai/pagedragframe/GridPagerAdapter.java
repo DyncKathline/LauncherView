@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.autoai.pagedragframe.drag.BaseDragPageAdapter;
@@ -14,20 +15,20 @@ import com.autoai.pagedragframe.drag.DragListenerDispatcher;
 
 import java.util.List;
 
-public class GridPagerAdapter extends BaseDragPageAdapter<TestBean> {
+public class GridPagerAdapter extends BaseDragPageAdapter<App> {
 
-    public GridPagerAdapter(Context context, List<TestBean> list, DragListenerDispatcher<ViewPager, DragInfo> pagerListener) {
-        super(context, 2, 5, list, pagerListener);
+    public GridPagerAdapter(Context context, List<App> list, DragListenerDispatcher<ViewPager, DragInfo> pagerListener) {
+        super(context, 4, 4, list, pagerListener);
     }
 
     @Override
-    public BaseDragPageAdapter.DragAdapter generateItemAdapter(List<TestBean> data, int pageIndex) {
+    public BaseDragPageAdapter.DragAdapter generateItemAdapter(List<App> data, int pageIndex) {
         return new ItemAdapter(data, pageIndex);
     }
 
-    class ItemAdapter extends DragAdapter<PageViewHolder> {
+    class ItemAdapter extends DragAdapter<ItemViewHolder> {
 
-        public ItemAdapter(List<TestBean> list, int pageIndex) {
+        public ItemAdapter(List<App> list, int pageIndex) {
             super(list, pageIndex);
         }
 
@@ -47,17 +48,29 @@ public class GridPagerAdapter extends BaseDragPageAdapter<TestBean> {
         }
 
         @Override
-        public PageViewHolder onCreateViewHolder(ViewGroup parent, int viewType, int pageIndex) {
-            View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler, parent, false);
+        public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType, int pageIndex) {
+            View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.page_item, parent, false);
 
-            return new PageViewHolder(inflate, pageIndex);
+            return new ItemViewHolder(inflate, pageIndex);
         }
 
         @Override
-        public void onBindViewHolder(PageViewHolder holder, int position, int pageIndex) {
-            holder.itemView.findViewById(R.id.iv_img).setBackgroundColor(
-                    Integer.valueOf(getData().get(position).color));
-            ((TextView)holder.itemView.findViewById(R.id.tv_name)).setText("" + getData().get(position).dataIndex);
+        public void onBindViewHolder(ItemViewHolder holder, int position, int pageIndex) {
+            App info = data.get(position);
+            holder.iv_app_icon.setImageDrawable(info._icon);
+            holder.tv_app_name.setText(info._label);
+        }
+    }
+
+    private static class ItemViewHolder extends PageViewHolder {
+
+        private final ImageView iv_app_icon;
+        private final TextView tv_app_name;
+
+        ItemViewHolder(View itemView, int pageIndex) {
+            super(itemView, pageIndex);
+            iv_app_icon = itemView.findViewById(R.id.iv_app_icon);
+            tv_app_name = itemView.findViewById(R.id.tv_app_name);
         }
     }
 

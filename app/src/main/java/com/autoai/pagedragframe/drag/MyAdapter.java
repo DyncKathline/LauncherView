@@ -1,8 +1,7 @@
-package com.autoai.pagedragframe.test.drag;
+package com.autoai.pagedragframe.drag;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import com.autoai.pagedrag.adapter.DragPageAdapter;
 import com.autoai.pagedrag.bean.PageData;
 import com.autoai.pagedragframe.App;
 import com.autoai.pagedragframe.R;
-import com.autoai.pagedragframe.TestBean;
 
 import java.util.List;
 
@@ -42,8 +40,8 @@ public class MyAdapter extends DragPageAdapter<App> {
         @Override
         public void onBindItemViewHolder(ItemViewHolder holder, int position) {
             App info = data.get(position);
-            holder.iv_item_app_icon.setImageDrawable(info._icon);
-            holder.tv_item_app_name.setText(info._label);
+            holder.iv_app_icon.setImageDrawable(info._icon);
+            holder.tv_app_name.setText(info._label);
         }
 
         @Override
@@ -57,14 +55,14 @@ public class MyAdapter extends DragPageAdapter<App> {
 
         @Override
         public long getStableItemId(int position) {
-            return data.get(position).id;
+            return data.get(position).hashCode();
         }
 
         @Override
         public int getPositionForId(long itemId) {
             int size = data.size();
             for (int i = 0; i < size; i++) {
-                int positionItemId = data.get(i).id;
+                int positionItemId = data.get(i).hashCode();
                 if (positionItemId == itemId) {
                     return i;
                 }
@@ -76,13 +74,13 @@ public class MyAdapter extends DragPageAdapter<App> {
 
     private static class ItemViewHolder extends DragViewHolder {
 
-        private final ImageView iv_item_app_icon;
-        private final TextView tv_item_app_name;
+        private final ImageView iv_app_icon;
+        private final TextView tv_app_name;
 
         ItemViewHolder(View itemView) {
             super(itemView);
-            iv_item_app_icon = itemView.findViewById(R.id.iv_app_icon);
-            tv_item_app_name = itemView.findViewById(R.id.tv_app_name);
+            iv_app_icon = itemView.findViewById(R.id.iv_app_icon);
+            tv_app_name = itemView.findViewById(R.id.tv_app_name);
         }
     }
 }

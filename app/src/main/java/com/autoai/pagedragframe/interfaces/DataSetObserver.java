@@ -1,4 +1,4 @@
-package com.autoai.pagedragframe.bean;
+package com.autoai.pagedragframe.interfaces;
 
 public interface DataSetObserver<E> {
     void onAddAll(boolean result);

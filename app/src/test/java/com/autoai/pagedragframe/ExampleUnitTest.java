@@ -18,10 +18,5 @@ public class ExampleUnitTest {
         System.out.println(Long.MAX_VALUE);
         System.out.println(String.valueOf(Long.MAX_VALUE).length());
         System.out.println(ALL_WORDS.length());
-
-        String mpkg = "com.autoai.mypagedragdemo";
-
-        System.out.println("---------");
-        System.out.println(Util.strToLong(mpkg));
     }
 }

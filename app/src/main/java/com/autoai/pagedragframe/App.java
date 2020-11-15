@@ -14,7 +14,6 @@ public class App {
     public String _packageName;
     public String _className;
     public UserHandle _userHandle;
-    public int id;
 
     public App(PackageManager pm, ResolveInfo info) {
         _icon = info.loadIcon(pm);

@@ -16,7 +16,7 @@ public abstract class BasePagerAdapter<Page extends View, Value> extends PagerAd
 
     private List<ViewGroup> pages = new ArrayList<>();
 
-    private final List<Value> mData;
+    private List<Value> mData;
 
     private WeakReference<Context> mContextRef;
 
@@ -39,8 +39,6 @@ public abstract class BasePagerAdapter<Page extends View, Value> extends PagerAd
     public void reCreateAllPages(List<Value> list){
         mData.clear();
         pages.clear();
-        //remove views
-        notifyDataSetChanged();
 
         mData.addAll(list);
         //reCreate views

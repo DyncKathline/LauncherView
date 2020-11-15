@@ -1,4 +1,4 @@
-package com.autoai.pagedragframe.bean;
+package com.autoai.pagedragframe.interfaces;
 
 import com.autoai.pagedragframe.App;
 

@@ -12,8 +12,8 @@ import android.os.UserHandle;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.autoai.pagedragframe.bean.AppDeleteListener;
-import com.autoai.pagedragframe.bean.AppUpdateListener;
+import com.autoai.pagedragframe.interfaces.AppDeleteListener;
+import com.autoai.pagedragframe.interfaces.AppUpdateListener;
 
 import java.text.Collator;
 import java.util.ArrayList;

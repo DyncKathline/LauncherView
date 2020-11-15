@@ -6,15 +6,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/button"
+    <com.autoai.pagedragframe.viewpager.RecycleViewPager
+        android:id="@+id/vp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Launcher效果实现一" />
+        android:layout_height="match_parent"/>
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Launcher效果实现二" />
 </LinearLayout>
