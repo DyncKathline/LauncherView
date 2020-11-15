@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.autoai.pagedragframe.viewpager.RecycleViewPager
+    <com.kathline.pagedrag2.viewpager.RecyclerViewPager
         android:id="@+id/vp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

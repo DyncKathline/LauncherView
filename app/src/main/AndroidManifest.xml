@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.autoai.pagedragframe">
+    package="com.kathline.pagedragframe">
 
     <application
         android:allowBackup="true"
@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Main2Activity"></activity>
-        <activity android:name=".Main1Activity" />
-        <activity android:name=".MainActivity">
+        <activity android:name="com.kathline.pagedragframe.Main2Activity"></activity>
+        <activity android:name="com.kathline.pagedragframe.Main1Activity" />
+        <activity android:name="com.kathline.pagedragframe.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
