@@ -1,6 +1,7 @@
 package com.kathline.pagedragframe;
 
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -16,6 +17,7 @@ public class Main1Activity extends AppCompatActivity {
 
     private ArrayList<App> data;
     private RecyclerViewPager vp;
+    private PagerIndicator indicator;
     private ViewPagerDragListenerImp dragListener;
     private GridPagerAdapter adapter;
 
@@ -25,7 +27,8 @@ public class Main1Activity extends AppCompatActivity {
         setContentView(R.layout.activity_main1);
         initData();
 
-        vp = (RecyclerViewPager) this.findViewById(R.id.vp);
+        vp = findViewById(R.id.vp);
+        indicator = findViewById(R.id.indicator);
 
         dragListener = new ViewPagerDragListenerImp(vp);
         //边界宽度定义
@@ -33,8 +36,15 @@ public class Main1Activity extends AppCompatActivity {
         dragListener.setRightOutZone(100);
         data = new ArrayList<>(new ArrayList<App>());
         adapter = new GridPagerAdapter(this, data, dragListener);
+        adapter.setItemOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                return true;
+            }
+        });
         vp.setAdapter(adapter);
         vp.setOnDragListener(dragListener);
+        indicator.setViewPager(vp);
     }
 
     private void initData() {

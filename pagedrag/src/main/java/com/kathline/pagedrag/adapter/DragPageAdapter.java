@@ -20,6 +20,7 @@ import com.kathline.pagedrag.views.DragViewPager;
 import java.util.List;
 
 public abstract class DragPageAdapter<Data> extends RecyclerViewPagerAdapter<Data> implements ViewPagerHelper<DragViewPager.DragListener> {
+    private View.OnLongClickListener onLongClickListener;
     public DragPageAdapter(Context context, PageData<Data> pageData, boolean initViewsImmediately) {
         super(context, pageData, initViewsImmediately);
     }
@@ -147,8 +148,7 @@ public abstract class DragPageAdapter<Data> extends RecyclerViewPagerAdapter<Dat
         return position >= views.size() ? null : (DragRecyclerView) views.get(position).getChildAt(0);
     }
 
-    public static class DragViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener {
-        private View.OnLongClickListener onLongClickListener;
+    public class DragViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener {
         public DragViewHolder(View itemView) {
             super(itemView);
             itemView.setOnLongClickListener(this);
@@ -188,10 +188,10 @@ public abstract class DragPageAdapter<Data> extends RecyclerViewPagerAdapter<Dat
         public View.DragShadowBuilder makeDragShadowBuilder(View itemView, Point touchPoint) {
             return new ScaleViewShadowBuilder(itemView, touchPoint);
         }
+    }
 
-        public void setItemOnLongClickListener(View.OnLongClickListener listener) {
-            onLongClickListener = listener;
-        }
+    public void setItemOnLongClickListener(View.OnLongClickListener listener) {
+        onLongClickListener = listener;
     }
 
 }

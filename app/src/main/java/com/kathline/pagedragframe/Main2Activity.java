@@ -1,7 +1,10 @@
 package com.kathline.pagedragframe;
 
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+
 import com.kathline.pagedrag.bean.PageData;
 import com.kathline.pagedrag.views.DragViewPager;
 import com.kathline.pagedragframe.interfaces.AppDeleteListener;
@@ -12,8 +15,9 @@ import java.util.List;
 public class Main2Activity extends AppCompatActivity {
 
     private DragViewPager vp;
+    private PagerIndicator indicator;
     private PageData<App> pageData;
-    private MyAdapter myAdapter;
+    private MyAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,14 +25,22 @@ public class Main2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
         initData();
 
-        vp = (DragViewPager) this.findViewById(R.id.vp);
+        vp = findViewById(R.id.vp);
+        indicator = findViewById(R.id.indicator);
 
-        myAdapter = new MyAdapter(this, pageData);
+        adapter = new MyAdapter(this, pageData);
+        adapter.setItemOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                return true;
+            }
+        });
         //边界宽度定义
         vp.setLeftOutZone(100);
         vp.setRightOutZone(100);
-        vp.setViewPagerHelper(myAdapter);
-        vp.setAdapter(myAdapter);
+        vp.setViewPagerHelper(adapter);
+        vp.setAdapter(adapter);
+        indicator.setViewPager(vp);
     }
 
     private void initData() {
@@ -57,7 +69,7 @@ public class Main2Activity extends AppCompatActivity {
                         return allData.indexOf(newData);
                     }
                 };
-                myAdapter.setPageData(pageData);
+                adapter.setPageData(pageData);
                 return true;
             }
         });
@@ -85,7 +97,7 @@ public class Main2Activity extends AppCompatActivity {
                         return allData.indexOf(newData);
                     }
                 };
-                myAdapter.setPageData(pageData);
+                adapter.setPageData(pageData);
                 return true;
             }
         });

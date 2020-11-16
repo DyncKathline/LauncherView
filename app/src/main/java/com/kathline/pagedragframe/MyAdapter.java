@@ -74,7 +74,7 @@ public class MyAdapter extends DragPageAdapter<App> {
 
     }
 
-    private static class ItemViewHolder extends DragViewHolder {
+    private class ItemViewHolder extends DragViewHolder {
 
         private final ImageView iv_app_icon;
         private final TextView tv_app_name;
