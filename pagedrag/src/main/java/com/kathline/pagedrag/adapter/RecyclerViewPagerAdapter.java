@@ -45,12 +45,18 @@ public abstract class RecyclerViewPagerAdapter<Data> extends ViewPagerAdapter im
         }
     }
 
+    public PageData<Data> getPageData() {
+        return mPageData;
+    }
+
     protected void initViewFromPageData(Context context) {
         int pageNum = mPageData.getPageNum();
 
         for (int i = 0; i < pageNum; i++) {
             FrameLayout frameLayout = new FrameLayout(context);
             RecyclerView recyclerView = onCreatePage(frameLayout, i);
+            recyclerView.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+            recyclerView.setVerticalScrollBarEnabled(false);
             frameLayout.addView(recyclerView, generatePageLayoutParams());
             views.add(frameLayout);
         }
@@ -78,7 +84,7 @@ public abstract class RecyclerViewPagerAdapter<Data> extends ViewPagerAdapter im
     }
 
     protected FrameLayout.LayoutParams generatePageLayoutParams() {
-        return new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        return new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
     }
 
     protected RecyclerView.LayoutManager generateItemLayoutManager(Context context, PageData<Data> pageData, int pageIndex) {

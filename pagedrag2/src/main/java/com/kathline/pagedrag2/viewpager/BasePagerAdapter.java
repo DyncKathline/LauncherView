@@ -95,7 +95,7 @@ public abstract class BasePagerAdapter<Page extends View, Value> extends PagerAd
     }
 
     public FrameLayout.LayoutParams generatePageLayoutParams(){
-        return new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        return new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
     }
 
     /**

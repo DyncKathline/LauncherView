@@ -33,6 +33,9 @@ public class MyAdapter extends DragPageAdapter<App> {
         @Override
         public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.page_item, parent, false);
+            ViewGroup.LayoutParams layoutParams = inflate.getLayoutParams();
+            layoutParams.height = parent.getHeight() / getPageData().getColumn();
+            inflate.setLayoutParams(layoutParams);
             return new ItemViewHolder(inflate);
         }
 

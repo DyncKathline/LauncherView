@@ -50,7 +50,9 @@ public class GridPagerAdapter extends BaseDragPageAdapter<App> {
         @Override
         public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType, int pageIndex) {
             View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.page_item, parent, false);
-
+            ViewGroup.LayoutParams layoutParams = inflate.getLayoutParams();
+            layoutParams.height = parent.getHeight() / getColumn();
+            inflate.setLayoutParams(layoutParams);
             return new ItemViewHolder(inflate, pageIndex);
         }
 

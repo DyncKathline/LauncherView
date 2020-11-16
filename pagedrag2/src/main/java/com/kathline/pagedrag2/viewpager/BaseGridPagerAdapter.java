@@ -59,7 +59,10 @@ public abstract class BaseGridPagerAdapter<V> extends BasePagerAdapter<RecyclerV
 
     @Override
     public RecyclerView onCreatePage(ViewGroup parent) {
-        return new RecyclerView(parent.getContext());
+        RecyclerView recyclerView = new RecyclerView(parent.getContext());
+        recyclerView.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+        recyclerView.setVerticalScrollBarEnabled(false);
+        return recyclerView;
     }
 
     @Override
